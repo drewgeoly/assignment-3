@@ -14,7 +14,8 @@
   async function send() {
     const content = input.trim();
     if (!content) return;
-    messages = [...messages, { role: 'user', content }];
+    const sentAt = Date.now();
+    messages = [...messages, { role: 'user', content, sentAt }];
     input = '';
     isLoading = true;
     errorMsg = '';
@@ -30,7 +31,7 @@
       return;
     }
     if (data.assistantMessage) {
-      messages = [...messages, { role: 'assistant', content: data.assistantMessage }];
+      messages = [...messages, { role: 'assistant', content: data.assistantMessage, sentAt: Date.now() }];
       replierInput = data.replierInput || null;
     }
     isLoading = false;

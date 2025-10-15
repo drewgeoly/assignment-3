@@ -27,7 +27,7 @@ export class Orchestrator {
     return res?.text || '';
   }
 
-  async orchestrate(contents) {
+  async orchestrate(contents, _context = {}) {
     const orchestratorPrompt = `Your job is to choose which emotional agents should respond to the user right now.
         Think in two steps:
         1) What emotions would best connect with the user right now, and what do they need (e.g., reassurance, validation, encouragement, caution)? Prioritize the latest user message while considering prior user messages with light recency weighting.
@@ -67,5 +67,4 @@ export class Orchestrator {
     return { assistantMessage: text || '', frameSet, agent, reasons };
   }
 }
-
 
